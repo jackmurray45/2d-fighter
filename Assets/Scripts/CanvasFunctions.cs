@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using TMPro;
 public class CanvasFunctions : MonoBehaviour {
+
 
 	// Use this for initialization
 	void Start () {
@@ -19,5 +21,13 @@ public class CanvasFunctions : MonoBehaviour {
 		Scene loadedLevel = SceneManager.GetActiveScene ();
 		SceneManager.LoadScene (loadedLevel.buildIndex);
 
+	}
+
+	public void pauseGame(){
+		Time.timeScale = 0;
+	}
+
+	public void resumeGame(){
+		Time.timeScale = 1;
 	}
 }

@@ -27,35 +27,34 @@ public class PlayerTwoMovement : PhysicsObject {
 			t.gameObject.SetActive (true);
 			t.SetText ("Player 1 Wins!");
 		}
+		if (Time.timeScale != 0) {
+			
+
+			if (Input.GetKeyDown ("up") && grounded) {
+				anim.SetTrigger ("isJumping");
+
+				velocity.y = jumpTakeOffSpeed;
+			}
 
 
-		if (Input.GetKeyDown ("up") && grounded) {
-			anim.SetTrigger ("isJumping");
+			if (Input.GetKey ("right") && dt.currentHealth > 0) {
+				anim.SetBool ("isRunning", true);
+				move.x = 1;
+				transform.rotation = Quaternion.Euler (0, 0, 0);
+			} else if (Input.GetKey ("left") && dt.currentHealth > 0) {
+				anim.SetBool ("isRunning", true);
+				move.x = -1;
+				transform.rotation = Quaternion.Euler (0, 180, 0);
+			} else {
+				anim.SetBool ("isRunning", false);
+			}
+			if (!grounded) {
+				anim.SetBool ("isRunning", false);
+			}
 
-			velocity.y = jumpTakeOffSpeed;
+			targetedVelocity = move * maxSpeed;
+
+
 		}
-
-
-		if (Input.GetKey("right") && dt.currentHealth > 0) {
-			anim.SetBool ("isRunning", true);
-			move.x = 1;
-			transform.rotation = Quaternion.Euler (0, 0, 0);
-		}
-		else if (Input.GetKey ("left") && dt.currentHealth > 0) {
-			anim.SetBool ("isRunning", true);
-			move.x = -1;
-			transform.rotation = Quaternion.Euler (0, 180, 0);
-		}
-
-		else {
-			anim.SetBool ("isRunning", false);
-		}
-		if (!grounded) {
-			anim.SetBool ("isRunning", false);
-		}
-
-		targetedVelocity = move * maxSpeed;
-
-
 	}
 }

@@ -28,13 +28,17 @@ public class ShootArrow : MonoBehaviour {
 
 			float rot = transform.rotation.y;
 			if (rot == 0)
-				rot = 1.5f;
+				rot = 1.25f;
 			else
-				rot = -1.5f;
+				rot = -1.25f;
 
 			Vector3 arrowPos = new Vector3 (transform.position.x + rot, transform.position.y, transform.position.z);
-			Instantiate (arrow, arrowPos, transform.rotation);
-			timeLeftToShoot = 3.0f;
+			int right = 30;
+			if (rot < 0)
+				right = 150;
+		
+			Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
+			timeLeftToShoot = 1.0f;
 
 		}
 		
