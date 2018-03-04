@@ -38,7 +38,7 @@ public class ShootArrowTwo : MonoBehaviour {
 			if (rot < 0)
 				right = 150;
 			Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
-			timeLeftToShoot = 1.0f;
+			timeLeftToShoot = .5f;
 
 		}
 

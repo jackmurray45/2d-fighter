@@ -27,12 +27,13 @@ public class Projectile : MonoBehaviour {
 
 	void Update(){
 		
+		if (Time.timeScale != 0) {
+			if (rb.velocity.x < 0) {
+				transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, transform.eulerAngles.z + rotateChange);
+			} else {
+				transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, transform.eulerAngles.z - rotateChange);
 
-		if (rb.velocity.x < 0) {
-			transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, transform.eulerAngles.z+rotateChange);
-		} else {
-			transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, transform.eulerAngles.z -rotateChange);
-
+			}
 		}
 	}
 
