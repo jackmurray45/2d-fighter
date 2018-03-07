@@ -30,4 +30,8 @@ public class CanvasFunctions : MonoBehaviour {
 	public void resumeGame(){
 		Time.timeScale = 1;
 	}
+
+	public void StartGame(){
+		SceneManager.LoadScene ("First");
+	}
 }

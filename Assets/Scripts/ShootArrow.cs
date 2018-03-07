@@ -9,9 +9,13 @@ public class ShootArrow : MonoBehaviour {
 	private const float ARROW_MAX = 10.0f;
 	public GameObject arrow;
 	public DamageTaken dt;
+    public AudioClip shootSound;
+
+    private AudioSource playerAudio;
+
 	// Use this for initialization
 	void Start () {
-		
+        playerAudio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -36,9 +40,11 @@ public class ShootArrow : MonoBehaviour {
 			int right = 30;
 			if (rot < 0)
 				right = 150;
-		
-			Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
-			timeLeftToShoot = .5f;
+
+            AudioSource.PlayClipAtPoint(shootSound, transform.position);
+            Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
+            
+            timeLeftToShoot = .5f;
 
 		}
 		
