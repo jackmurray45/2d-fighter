@@ -13,17 +13,29 @@ public class DamageTaken : MonoBehaviour {
 
     private AudioSource playerSound;
     private bool isDead = false;
+    private SpriteRenderer renderer;
 
 	// Use this for initialization
 	void Start () {
 		
 		anim = GetComponent<Animator> ();
         playerSound = GetComponent<AudioSource>();
+        renderer = GetComponent<SpriteRenderer>();
 
 	}
 
-	// Update is called once per frame
-	void Update () {
+    IEnumerator DamageFlash()
+    {
+        Color currentColor = renderer.material.color;
+        currentColor.a -= .7f;
+        renderer.material.color = currentColor;
+        yield return new WaitForSeconds(.2f);
+        currentColor.a += .7f;
+        renderer.material.color = currentColor;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
 		if (currentHealth == 0 && !isDead) {
 			anim.SetTrigger ("isDead");
@@ -39,10 +51,10 @@ public class DamageTaken : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collider){
 		
 		if (collider.gameObject.tag == "Damage") {
-			Debug.Log ("DAMAGE DONE!");
 			currentHealth -= 25;
             healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
+            StartCoroutine(DamageFlash());
             playerSound.Play();
 		}
 	}

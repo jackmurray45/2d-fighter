@@ -28,18 +28,18 @@ public class ShootArrow : MonoBehaviour {
 				arrowPower = ARROW_MAX;
 		}
 		if (Input.GetKeyUp ("space") && dt.currentHealth > 0 && timeLeftToShoot <= 0) {
-			arrowPower = 0.0f;
+            arrowPower = 0.0f;
 
-			float rot = transform.rotation.y;
-			if (rot == 0)
-				rot = 1.25f;
-			else
-				rot = -1.25f;
+            float rot = transform.rotation.y;
+            if (rot == 0)
+                rot = 1.25f;
+            else
+                rot = -1.25f;
 
-			Vector3 arrowPos = new Vector3 (transform.position.x + rot, transform.position.y, transform.position.z);
-			int right = 30;
-			if (rot < 0)
-				right = 150;
+            Vector3 arrowPos = new Vector3(transform.position.x + rot, transform.position.y, transform.position.z);
+            int right = 30;
+            if (rot < 0)
+                right = 150;
 
             AudioSource.PlayClipAtPoint(shootSound, transform.position);
             Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));

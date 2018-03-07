@@ -28,8 +28,10 @@ public class DamageTwoTaken : MonoBehaviour {
     IEnumerator DamageFlash()
     {
         Color currentColor = renderer.material.color;
-        //renderer.material.color = 150f;
-        yield return new WaitForSeconds(5f);
+        currentColor.a -= .7f;
+        renderer.material.color = currentColor;
+        yield return new WaitForSeconds(.2f);
+        currentColor.a += .7f;
         renderer.material.color = currentColor;
     }
 
@@ -50,7 +52,6 @@ public class DamageTwoTaken : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collider){
 
 		if (collider.gameObject.tag == "Damage") {
-			Debug.Log ("DAMAGE DONE!");
 			currentHealth -= 25;
             healthDisplay.text = "" + currentHealth;
             playerTwoSound.Play();
