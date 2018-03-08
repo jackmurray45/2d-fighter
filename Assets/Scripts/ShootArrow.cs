@@ -27,7 +27,7 @@ public class ShootArrow : MonoBehaviour {
 			if (arrowPower > ARROW_MAX)
 				arrowPower = ARROW_MAX;
 		}
-		if (Input.GetKeyUp ("space") && dt.currentHealth > 0 && timeLeftToShoot <= 0) {
+		if (Input.GetKeyUp ("space") && DamageTaken.currentHealth > 0 && timeLeftToShoot <= 0) {
             arrowPower = 0.0f;
 
             float rot = transform.rotation.y;

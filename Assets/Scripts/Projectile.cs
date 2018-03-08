@@ -32,13 +32,14 @@ public class Projectile : MonoBehaviour {
 				transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, transform.eulerAngles.z + rotateChange);
 			} else {
 				transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, transform.eulerAngles.z - rotateChange);
-
 			}
 		}
 	}
 
 	void OnTriggerEnter2D (Collider2D collider){
-
+		if (collider.gameObject.tag == "Mage") {
+			Destroy (collider.gameObject);
+		}
 		Destroy (gameObject);
 	}
 		

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DamageTwoTaken : MonoBehaviour {
 	Animator anim;
-	public float maxHealth = 100.0f;
-	public float currentHealth = 100.0f;
+	public static float maxHealth = 100.0f;
+	public static float currentHealth = 100.0f;
 	public PlayerTwoMovement playmove;
     public AudioClip deathSound;
     public Text healthDisplay;
@@ -57,6 +57,16 @@ public class DamageTwoTaken : MonoBehaviour {
             playerTwoSound.Play();
 			Destroy (collider.gameObject);
             StartCoroutine(DamageFlash());
+		}
+
+		if (collider.gameObject.tag == "FireBall") {
+			currentHealth -= 10;
+			healthDisplay.text = "" + currentHealth;
+			Destroy (collider.gameObject);
+			StartCoroutine(DamageFlash());
+
+
+
 		}
 	}
 }
