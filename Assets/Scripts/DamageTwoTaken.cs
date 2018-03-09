@@ -53,6 +53,8 @@ public class DamageTwoTaken : MonoBehaviour {
 
 		if (collider.gameObject.tag == "Damage") {
 			currentHealth -= 25;
+			if (currentHealth < 0)
+				currentHealth = 0;
             healthDisplay.text = "" + currentHealth;
             playerTwoSound.Play();
 			Destroy (collider.gameObject);
@@ -63,7 +65,7 @@ public class DamageTwoTaken : MonoBehaviour {
 			currentHealth -= 10;
 			healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
-			StartCoroutine(DamageFlash());
+			//StartCoroutine(DamageFlash());
 
 
 

@@ -32,6 +32,8 @@ public class CanvasFunctions : MonoBehaviour {
 	}
 
 	public void StartGame(){
+		DamageTaken.currentHealth = DamageTaken.maxHealth;
+		DamageTwoTaken.currentHealth = DamageTaken.maxHealth;
 		SceneManager.LoadScene ("First");
 	}
 

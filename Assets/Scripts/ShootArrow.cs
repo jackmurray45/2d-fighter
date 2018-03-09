@@ -6,15 +6,20 @@ public class ShootArrow : MonoBehaviour {
 
 	public float timeLeftToShoot = 0f;
 	public float arrowPower = 0.0f;
+	public float quickShootTime = 10.0f;
 	private const float ARROW_MAX = 10.0f;
 	public GameObject arrow;
 	public DamageTaken dt;
     public AudioClip shootSound;
 
+
+	private bool quickShoot;
+
     private AudioSource playerAudio;
 
 	// Use this for initialization
 	void Start () {
+		quickShoot = false;
         playerAudio = GetComponent<AudioSource>();
 	}
 	
@@ -43,12 +48,32 @@ public class ShootArrow : MonoBehaviour {
 
             AudioSource.PlayClipAtPoint(shootSound, transform.position);
             Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
-            
-            timeLeftToShoot = .5f;
+			if (quickShoot && quickShootTime > 0) {
+				timeLeftToShoot = 0f;
+
+			} else {
+				timeLeftToShoot = 0.5f;
+				quickShoot = false;
+				quickShootTime = 10.0f;
+			}
 
 		}
+		quickShootTime -= Time.deltaTime;
 		
 
 		
 	}
+
+	void OnTriggerEnter2D (Collider2D collider){
+		if (collider.gameObject.tag == "ArrowBoost") {
+			quickShoot = true;
+			Destroy (collider.gameObject);
+			quickShootTime = 10.0f;
+		}
+
+
+	}
+
+
+
 }
