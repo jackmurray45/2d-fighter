@@ -72,6 +72,8 @@ GameObject:
   - component: {fileID: 4706249603440228}
   - component: {fileID: 61967223054816872}
   - component: {fileID: 114703152064116564}
+  - component: {fileID: 50236894636471686}
+  - component: {fileID: 114292849872349706}
   m_Layer: 0
   m_Name: arrow boost
   m_TagString: ArrowBoost
@@ -165,6 +167,26 @@ Transform:
   m_Father: {fileID: 4706249603440228}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!50 &50236894636471686
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537784386454850}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61967223054816872
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -201,6 +223,19 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114292849872349706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537784386454850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe94ba6a91780149934a23665fb977a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  gravityModifier: 2
 --- !u!114 &114703152064116564
 MonoBehaviour:
   m_ObjectHideFlags: 1

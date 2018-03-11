@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootArrow : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class ShootArrow : MonoBehaviour {
 	public GameObject arrow;
 	public DamageTaken dt;
     public AudioClip shootSound;
+	public Text boostDisplay;
 
 
 	private bool quickShoot;
@@ -42,21 +44,30 @@ public class ShootArrow : MonoBehaviour {
                 rot = -1.25f;
 
             Vector3 arrowPos = new Vector3(transform.position.x + rot, transform.position.y, transform.position.z);
-            int right = 30;
+            int right = 0;
             if (rot < 0)
-                right = 150;
+                right = 180;
 
             AudioSource.PlayClipAtPoint(shootSound, transform.position);
-            Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
+			Instantiate (arrow, arrowPos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, right));
 			if (quickShoot && quickShootTime > 0) {
+				
 				timeLeftToShoot = 0f;
 
 			} else {
+
 				timeLeftToShoot = 0.5f;
 				quickShoot = false;
 				quickShootTime = 10.0f;
 			}
 
+		}
+		if (quickShoot && quickShootTime > 0) {
+			Debug.Log ("HERE!");
+			boostDisplay.text = "Arrow Boost: " + Mathf.RoundToInt(quickShootTime)+"s";
+		} else {
+			Debug.Log ("Now here!");
+			boostDisplay.text = "";
 		}
 		quickShootTime -= Time.deltaTime;
 		

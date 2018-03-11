@@ -9,6 +9,8 @@ TagManager:
   - FireBall
   - ArrowBoost
   - Test
+  - Health
+  - Knight
   layers:
   - Default
   - TransparentFX

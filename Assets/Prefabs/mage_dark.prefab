@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 70995379841924928}
   - component: {fileID: 114568461904018046}
   - component: {fileID: 114887454334985130}
+  - component: {fileID: 114841840972804366}
   m_Layer: 0
   m_Name: mage_dark
   m_TagString: Mage
@@ -111,8 +112,20 @@ MonoBehaviour:
   timeLeftToShoot: 0
   timeLeftToChangeArcher: 0
   fireBall: {fileID: 1946651080699112, guid: 99d9cde57a38e5e418787b5d718046dd, type: 2}
-  dt: {fileID: 114509056227735798, guid: 29ae5ad0c82fbd84e83596771e99aabe, type: 2}
-  DTt: {fileID: 114129392871828422, guid: b386974a78b491c409a84ba6a4d25441, type: 2}
+--- !u!114 &114841840972804366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832091347010894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e642ca2fc391741afc1f61b24526e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowPack: {fileID: 1537784386454850, guid: 50c5c69f3ceeab943882bc72845088fd, type: 2}
+  healthElixir: {fileID: 1914730295789936, guid: d89182ec323d3d944b5ff113b6875c04,
+    type: 2}
 --- !u!114 &114887454334985130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fa63612ba26fc4ea94ec2ae981b445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dt: {fileID: 0}
+  DTt: {fileID: 0}
 --- !u!212 &212906213466493686
 SpriteRenderer:
   m_ObjectHideFlags: 1

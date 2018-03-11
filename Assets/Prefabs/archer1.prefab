@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114811078483155716}
   - component: {fileID: 114509056227735798}
   - component: {fileID: 114513503191300394}
+  - component: {fileID: 82946972508218904}
   m_Layer: 0
   m_Name: archer1
   m_TagString: Player
@@ -41,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002365947637330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.66, y: 2.12, z: 0}
+  m_LocalPosition: {x: -6.25, y: 0.34, z: 0}
   m_LocalScale: {x: 1.5670803, y: 1.3502557, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,6 +83,86 @@ CapsuleCollider2D:
   m_Offset: {x: 0.2, y: 0}
   m_Size: {x: 0.75, y: 0.75}
   m_Direction: 0
+--- !u!82 &82946972508218904
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002365947637330}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e88b32befcd8e9743a10499a86157dff, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95021691907251090
 Animator:
   serializedVersion: 3
@@ -110,9 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ae6f46566116d42b59e8fa4c439877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
   playmove: {fileID: 114811078483155716}
+  deathSound: {fileID: 8300000, guid: aed4b4ef5de740c4e80545213bc89bad, type: 3}
+  healthDisplay: {fileID: 0}
 --- !u!114 &114513503191300394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,8 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59dfb0e065b63664ab10b883e8bce28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLeftToShoot: 0
   arrowPower: 0
+  quickShootTime: 10
   arrow: {fileID: 1337069248181902, guid: 5e91a02e0fdebd04e98fdb5e35a94628, type: 2}
+  dt: {fileID: 114509056227735798}
+  shootSound: {fileID: 8300000, guid: 004460741ef7361459fd0d55e161069c, type: 3}
 --- !u!114 &114811078483155716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,9 +224,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
-  dt: {fileID: 114509056227735798}
   maxSpeed: 10
   jumpTakeOffSpeed: 11
+  t: {fileID: 0}
+  b: {fileID: 0}
 --- !u!114 &114812082443322406
 MonoBehaviour:
   m_ObjectHideFlags: 1

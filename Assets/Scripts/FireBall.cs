@@ -47,7 +47,13 @@ public class FireBall : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D collider){
-		if(collider.gameObject.tag == "Player")
+		if (collider.gameObject.tag == "Player") {
+			if (currentArcher == 1) {
+				currentArcher = 2;
+			} else {
+				currentArcher = 1;
+			}
 			Destroy (gameObject);
+		}
 	}
 }

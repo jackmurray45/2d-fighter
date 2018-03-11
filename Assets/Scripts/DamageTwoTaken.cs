@@ -10,7 +10,7 @@ public class DamageTwoTaken : MonoBehaviour {
 	public PlayerTwoMovement playmove;
     public AudioClip deathSound;
     public Text healthDisplay;
-
+	public float invisibleTimeFrame;
     private AudioSource playerTwoSound;
     private Renderer renderer;
     private bool isDead;
@@ -21,7 +21,7 @@ public class DamageTwoTaken : MonoBehaviour {
         playerTwoSound = GetComponent<AudioSource>();
 		anim = GetComponent<Animator> ();
         renderer = GetComponent<SpriteRenderer>();
-
+		invisibleTimeFrame = 0f;
 	}
 
 
@@ -30,7 +30,7 @@ public class DamageTwoTaken : MonoBehaviour {
         Color currentColor = renderer.material.color;
         currentColor.a -= .7f;
         renderer.material.color = currentColor;
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(2.0f);
         currentColor.a += .7f;
         renderer.material.color = currentColor;
     }
@@ -46,28 +46,54 @@ public class DamageTwoTaken : MonoBehaviour {
             playerTwoSound.Play();
             isDead = true;
 		}
+		if(invisibleTimeFrame >= 0)
+			invisibleTimeFrame -= Time.deltaTime;
 
 	}
 
 	void OnTriggerEnter2D (Collider2D collider){
+		if (invisibleTimeFrame <= 0) {
+			if (collider.gameObject.tag == "Damage") {
+				currentHealth -= 10;
+				if (currentHealth < 0)
+					currentHealth = 0;
+				healthDisplay.text = "" + currentHealth;
+				playerTwoSound.Play ();
+				Destroy (collider.gameObject);
+				StartCoroutine (DamageFlash ());
+				invisibleTimeFrame = 2.0f;
+			}
 
-		if (collider.gameObject.tag == "Damage") {
-			currentHealth -= 25;
-			if (currentHealth < 0)
-				currentHealth = 0;
-            healthDisplay.text = "" + currentHealth;
-            playerTwoSound.Play();
-			Destroy (collider.gameObject);
-            StartCoroutine(DamageFlash());
+			if (collider.gameObject.tag == "FireBall") {
+				currentHealth -= 5;
+				if (currentHealth < 0)
+					currentHealth = 0;
+				healthDisplay.text = "" + currentHealth;
+				playerTwoSound.Play ();
+				Destroy (collider.gameObject);
+				StartCoroutine (DamageFlash ());
+				invisibleTimeFrame = 2.0f;
+			}
+
+			if (collider.gameObject.tag == "Knight") {
+				currentHealth -= 20;
+				if (currentHealth < 0)
+					currentHealth = 0;
+				healthDisplay.text = "" + currentHealth;
+				playerTwoSound.Play ();
+				StartCoroutine (DamageFlash ());
+				invisibleTimeFrame = 2.0f;
+
+			}
 		}
 
-		if (collider.gameObject.tag == "FireBall") {
-			currentHealth -= 10;
+		if (collider.tag == "Health" && currentHealth < 100) {
+			currentHealth += 50;
+			if (currentHealth > maxHealth) {
+				currentHealth = maxHealth;
+			}
 			healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
-			//StartCoroutine(DamageFlash());
-
-
 
 		}
 	}
