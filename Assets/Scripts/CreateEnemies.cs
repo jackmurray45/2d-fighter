@@ -6,6 +6,7 @@ public class CreateEnemies : MonoBehaviour {
 	public GameObject knights;
 	public GameObject mages;
 	private float timeUntilNextEnemy = 5.0f;
+	private float decreaseDelay = 1.0f;
 	// Use this for initialization
 	void Start () {
 		
@@ -28,9 +29,12 @@ public class CreateEnemies : MonoBehaviour {
 				Instantiate (knights, new Vector3 (x, y, 0), rotation);
 			}
 
+			if (decreaseDelay > .2f) {
+				decreaseDelay -= .1f;
+			}
 
-
-			timeUntilNextEnemy = Random.Range(5.0f, 10.0f);
+			timeUntilNextEnemy = Random.Range(5.0f*decreaseDelay, 10.0f*decreaseDelay);
+			Debug.Log ("NEXT ATTACK: " + timeUntilNextEnemy);
 
 		}
 

@@ -7,16 +7,17 @@ public class CreateFireBalls : MonoBehaviour {
 	public float timeLeftToShoot = 0f;
 	public float timeLeftToChangeArcher = 5f;
 	public GameObject fireBall;
+	Animator anim;
 	// Use this for initialization
 	void Start () {
-		
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		timeLeftToShoot -= Time.deltaTime;
 		timeLeftToChangeArcher -= Time.deltaTime;
-		if (Time.timeScale != 0 && timeLeftToShoot <= 0 && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
+		if (Time.timeScale != 0 && timeLeftToShoot <= 0 && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0 && !anim.GetCurrentAnimatorStateInfo (0).IsName ("dying")) {
 			float rot = transform.rotation.y;
 			if (rot == 0)
 				rot = 1.25f;

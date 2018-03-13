@@ -6,9 +6,11 @@ public class KnightMovement : PhysicsObject {
 	public float timeBetweenAttacks;
 	private bool archer1;
 	private Transform target;
+
+	Animator anim;
 	// Use this for initialization
 	void Start () {
-
+		anim = GetComponent<Animator> ();
 		int currentArcher = Random.Range (0, 2);
 		if (currentArcher == 0) {
 			archer1 = true;
@@ -22,7 +24,9 @@ public class KnightMovement : PhysicsObject {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("here!");
+
+
+		
 		if (DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
 
 			if (timeBetweenAttacks <= 0) {
@@ -40,13 +44,14 @@ public class KnightMovement : PhysicsObject {
 
 		float step = 5 * Time.deltaTime;
 		//new Vector3 (target.position.x, transform.position.y, transform.position.z)
-
-		if (true) {
-			transform.position = Vector3.MoveTowards (transform.position, target.position, step);
-		} else {
-			transform.position = Vector3.MoveTowards (transform.position, new Vector3 (target.position.x, transform.position.y, transform.position.z), step);
+		if (!anim.GetCurrentAnimatorStateInfo (0).IsName ("dying") && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
+			if (true) {
+				transform.position = Vector3.MoveTowards (transform.position, target.position, step);
+			} else {
+				transform.position = Vector3.MoveTowards (transform.position, new Vector3 (target.position.x, transform.position.y, transform.position.z), step);
+			}
+			timeBetweenAttacks -= Time.deltaTime;
 		}
-		timeBetweenAttacks -= Time.deltaTime;
 		
 	}
 

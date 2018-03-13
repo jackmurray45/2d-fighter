@@ -14,6 +14,9 @@ public class DamageTaken : MonoBehaviour {
     private AudioSource playerSound;
     private bool isDead = false;
     private SpriteRenderer renderer;
+	public float timeUntilDeathEnds = 1.5f;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +48,10 @@ public class DamageTaken : MonoBehaviour {
             playerSound.clip = deathSound;
             playerSound.Play();
             isDead = true;
+
+
+
+
 		}
 		if(invisibleTimeFrame >= 0)
 			invisibleTimeFrame -= Time.deltaTime;
@@ -52,7 +59,7 @@ public class DamageTaken : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D collider){
-		if (invisibleTimeFrame <= 0) {
+		if (invisibleTimeFrame <= 0 && DamageTwoTaken.currentHealth > 0) {
 			if (collider.gameObject.tag == "Damage") {
 				currentHealth -= 10;
 				if (currentHealth < 0)
@@ -84,7 +91,7 @@ public class DamageTaken : MonoBehaviour {
 			invisibleTimeFrame = 2.0f;
 		}
 
-		if (collider.tag == "Health" && currentHealth < 100) {
+		if (collider.tag == "Health" && currentHealth < 100 && currentHealth > 0) {
 			currentHealth += 50;
 			if (currentHealth > maxHealth) {
 				currentHealth = maxHealth;

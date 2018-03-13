@@ -6,7 +6,7 @@ public class MageMovement : MonoBehaviour {
 
 	public DamageTaken dt;
 	public DamageTwoTaken DTt;
-
+	Animator anim;
 	private Transform target;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,7 @@ public class MageMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		anim = GetComponent<Animator> ();
 		if (DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
 			if (FireBall.currentArcher == 1) {
 				target = GameObject.Find ("archer1").transform;
@@ -28,8 +28,9 @@ public class MageMovement : MonoBehaviour {
 
 
 
-
-		float step = 5 * Time.deltaTime;
-		transform.position = Vector3.MoveTowards (transform.position, new Vector3 (target.position.x, transform.position.y, transform.position.z), step);
+		if (!anim.GetCurrentAnimatorStateInfo (0).IsName ("dying")  && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
+			float step = 5 * Time.deltaTime;
+			transform.position = Vector3.MoveTowards (transform.position, new Vector3 (target.position.x, transform.position.y, transform.position.z), step);
+		}
 	}
 }
