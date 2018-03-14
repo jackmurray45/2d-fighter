@@ -193,7 +193,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playmove: {fileID: 114811078483155716}
   deathSound: {fileID: 8300000, guid: aed4b4ef5de740c4e80545213bc89bad, type: 3}
+  hitSound: {fileID: 8300000, guid: e88b32befcd8e9743a10499a86157dff, type: 3}
   healthDisplay: {fileID: 0}
+  invisibleTimeFrame: 0
+  elixirSound: {fileID: 8300000, guid: 1d560427a322f1c4a97af0116e10c9a6, type: 3}
+  timeUntilDeathEnds: 1.5
 --- !u!114 &114513503191300394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,6 +215,8 @@ MonoBehaviour:
   arrow: {fileID: 1337069248181902, guid: 5e91a02e0fdebd04e98fdb5e35a94628, type: 2}
   dt: {fileID: 114509056227735798}
   shootSound: {fileID: 8300000, guid: 004460741ef7361459fd0d55e161069c, type: 3}
+  arrowPackSound: {fileID: 8300000, guid: 5277ae5e9f347f141b1117dc5893b69e, type: 3}
+  boostDisplay: {fileID: 0}
 --- !u!114 &114811078483155716
 MonoBehaviour:
   m_ObjectHideFlags: 1

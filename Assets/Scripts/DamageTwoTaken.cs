@@ -9,17 +9,22 @@ public class DamageTwoTaken : MonoBehaviour {
 	public static float currentHealth = 100.0f;
 	public PlayerTwoMovement playmove;
     public AudioClip deathSound;
+	public AudioClip hitSound;
     public Text healthDisplay;
+	public AudioClip elixirSound;
 	public float invisibleTimeFrame;
     private AudioSource playerTwoSound;
     private Renderer renderer;
     private bool isDead;
+
 
 	public float timeUntilDeathEnds = 1.5f;
 
 
 	// Use this for initialization
 	void Start () {
+		
+
         playerTwoSound = GetComponent<AudioSource>();
 		anim = GetComponent<Animator> ();
         renderer = GetComponent<SpriteRenderer>();
@@ -32,9 +37,10 @@ public class DamageTwoTaken : MonoBehaviour {
         Color currentColor = renderer.material.color;
         currentColor.a -= .7f;
         renderer.material.color = currentColor;
-        yield return new WaitForSeconds(2.0f);
-        currentColor.a += .7f;
-        renderer.material.color = currentColor;
+        yield return new WaitForSeconds(.2f);
+
+		currentColor.a = 1.0f;
+		renderer.material.color = currentColor;
     }
 
     // Update is called once per frame
@@ -57,6 +63,7 @@ public class DamageTwoTaken : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D collider){
 		if (invisibleTimeFrame <= 0 && DamageTaken.currentHealth > 0) {
+			
 			if (collider.gameObject.tag == "Damage") {
 				currentHealth -= 10;
 				if (currentHealth < 0)
@@ -65,7 +72,7 @@ public class DamageTwoTaken : MonoBehaviour {
 				playerTwoSound.Play ();
 				Destroy (collider.gameObject);
 				StartCoroutine (DamageFlash ());
-				invisibleTimeFrame = 2.0f;
+				invisibleTimeFrame = 0.0f;
 			}
 
 			if (collider.gameObject.tag == "FireBall") {
@@ -76,7 +83,7 @@ public class DamageTwoTaken : MonoBehaviour {
 				playerTwoSound.Play ();
 				Destroy (collider.gameObject);
 				StartCoroutine (DamageFlash ());
-				invisibleTimeFrame = 2.0f;
+				invisibleTimeFrame = 0.0f;
 			}
 
 			if (collider.gameObject.tag == "Knight") {
@@ -86,7 +93,7 @@ public class DamageTwoTaken : MonoBehaviour {
 				healthDisplay.text = "" + currentHealth;
 				playerTwoSound.Play ();
 				StartCoroutine (DamageFlash ());
-				invisibleTimeFrame = 2.0f;
+				invisibleTimeFrame = 0.0f;
 
 			}
 		}
@@ -96,9 +103,20 @@ public class DamageTwoTaken : MonoBehaviour {
 			if (currentHealth > maxHealth) {
 				currentHealth = maxHealth;
 			}
+
+			playerTwoSound.clip = elixirSound;
+			playerTwoSound.Play ();
+
 			healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
 
+			Invoke ("ChangeToDamage", 1.3f);
+
 		}
+	}
+
+	private void ChangeToDamage(){
+		playerTwoSound.clip = hitSound;
+
 	}
 }

@@ -16,10 +16,15 @@ public class Projectile : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		float currentRotation = transform.rotation.y;
 
-		if (currentRotation == 0) {
-			rb.velocity = new Vector2 (15, 0);
+		if (transform.position.y >= 6.5f) {
+			transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, -90.0f);
+			rb.velocity = new Vector2 (0, -5);
 		} else {
-			rb.velocity = new Vector2 (-15, 0);
+			if (currentRotation == 0) {
+				rb.velocity = new Vector2 (15, 0);
+			} else {
+				rb.velocity = new Vector2 (-15, 0);
+			}
 		}
 
 

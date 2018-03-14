@@ -2573,7 +2573,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1323942203}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -13.3, y: 3.5, z: 0}
+  m_LocalPosition: {x: -13.74, y: 3.82, z: 0}
   m_LocalScale: {x: 4.15959, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 825428702}
@@ -3326,7 +3326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1669596374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3338,6 +3338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ec2f382c38e5b4c81e6b2ff84fb8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrow: {fileID: 1337069248181902, guid: 5e91a02e0fdebd04e98fdb5e35a94628, type: 2}
+  healthElixir: {fileID: 1914730295789936, guid: d89182ec323d3d944b5ff113b6875c04,
+    type: 2}
   arrowPack: {fileID: 1537784386454850, guid: 50c5c69f3ceeab943882bc72845088fd, type: 2}
 --- !u!4 &1669596375
 Transform:

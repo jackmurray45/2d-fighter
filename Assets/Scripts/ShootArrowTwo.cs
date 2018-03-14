@@ -11,6 +11,7 @@ public class ShootArrowTwo : MonoBehaviour {
 	public GameObject arrow;
 	public DamageTwoTaken dt;
     public AudioClip shootSound;
+	public AudioClip arrowPackSound;
 	private bool quickShoot;
     private AudioSource playerAudio;
 	public Text boostDisplay;
@@ -22,6 +23,11 @@ public class ShootArrowTwo : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if (playerAudio.clip == arrowPackSound) {
+			Invoke ("ChangeToShoot", 1.0f);
+		}
+
 		timeLeftToShoot -= Time.deltaTime;
 		if (Input.GetKey ("[0]")) {
 			if(arrowPower < ARROW_MAX)
@@ -30,6 +36,7 @@ public class ShootArrowTwo : MonoBehaviour {
 				arrowPower = ARROW_MAX;
 		}
 		if (Input.GetKeyUp ("[0]") && DamageTwoTaken.currentHealth > 0 && timeLeftToShoot <= 0) {
+
 			arrowPower = 0.0f;
 			float rot = transform.rotation.y;
 			if (rot == 0)
@@ -64,10 +71,10 @@ public class ShootArrowTwo : MonoBehaviour {
 		}
 
 		if (quickShoot && quickShootTime > 0) {
-			Debug.Log ("HERE!");
+			
 			boostDisplay.text = "Arrow Boost: " + Mathf.RoundToInt(quickShootTime)+"s";
 		} else {
-			Debug.Log ("Now here!");
+			
 			boostDisplay.text = "";
 		}
 		quickShootTime -= Time.deltaTime;
@@ -76,9 +83,17 @@ public class ShootArrowTwo : MonoBehaviour {
 
 	}
 
+
+	void ChangeToShoot(){
+		playerAudio.clip = shootSound;
+	}
+
 	void OnTriggerEnter2D (Collider2D collider){
 		if (collider.gameObject.tag == "ArrowBoost") {
 			quickShoot = true;
+
+			playerAudio.clip = arrowPackSound;
+			playerAudio.Play ();
 			Destroy (collider.gameObject);
 			quickShootTime = 10.0f;
 		}

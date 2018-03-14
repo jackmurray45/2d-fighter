@@ -9,9 +9,11 @@ public class DamageTaken : MonoBehaviour {
 	public static float currentHealth = 100.0f;
 	public PlayerMovement playmove;
     public AudioClip deathSound;
+	public AudioClip hitSound;
     public Text healthDisplay;
 	public float invisibleTimeFrame;
     private AudioSource playerSound;
+	public AudioClip elixirSound;
     private bool isDead = false;
     private SpriteRenderer renderer;
 	public float timeUntilDeathEnds = 1.5f;
@@ -33,9 +35,9 @@ public class DamageTaken : MonoBehaviour {
         Color currentColor = renderer.material.color;
         currentColor.a -= .7f;
         renderer.material.color = currentColor;
-        yield return new WaitForSeconds(2.0f);
-        currentColor.a += .7f;
-        renderer.material.color = currentColor;
+        yield return new WaitForSeconds(.2f);
+		currentColor.a = 1.0f;
+		renderer.material.color = currentColor;
     }
 
     // Update is called once per frame
@@ -60,6 +62,7 @@ public class DamageTaken : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D collider){
 		if (invisibleTimeFrame <= 0 && DamageTwoTaken.currentHealth > 0) {
+			
 			if (collider.gameObject.tag == "Damage") {
 				currentHealth -= 10;
 				if (currentHealth < 0)
@@ -88,7 +91,7 @@ public class DamageTaken : MonoBehaviour {
 				StartCoroutine (DamageFlash ());
 				playerSound.Play ();
 			}
-			invisibleTimeFrame = 2.0f;
+			invisibleTimeFrame = 0.0f;
 		}
 
 		if (collider.tag == "Health" && currentHealth < 100 && currentHealth > 0) {
@@ -96,9 +99,20 @@ public class DamageTaken : MonoBehaviour {
 			if (currentHealth > maxHealth) {
 				currentHealth = maxHealth;
 			}
+			playerSound.clip = elixirSound;
+			playerSound.Play ();
+
 			healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
+
+			Invoke ("ChangeToDamage", 1.3f);
 		}
+	}
+
+
+	private void ChangeToDamage(){
+		playerSound.clip = hitSound;
+
 	}
 }
 
