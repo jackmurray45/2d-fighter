@@ -91,7 +91,7 @@ public class DamageTaken : MonoBehaviour {
 				StartCoroutine (DamageFlash ());
 				playerSound.Play ();
 			}
-			invisibleTimeFrame = 0.0f;
+			invisibleTimeFrame = 0.2f;
 		}
 
 		if (collider.tag == "Health" && currentHealth < 100 && currentHealth > 0) {

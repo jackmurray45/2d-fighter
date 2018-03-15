@@ -26,18 +26,18 @@ public class PlayerMovement : PhysicsObject {
 			t.SetText ("Player 2 Wins!");
 		}
 		if (Time.timeScale != 0) {
-			if (Input.GetKeyDown ("w") && grounded) {
+			if (Input.GetKeyDown ("w") && grounded && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
 				anim.SetTrigger ("isJumping");
 			
 				velocity.y = jumpTakeOffSpeed;
 			}
 
 
-			if (Input.GetKey ("d") && DamageTaken.currentHealth > 0) {
+			if (Input.GetKey ("d") && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
 				anim.SetBool ("isRunning", true);
 				move.x = 1;
 				transform.rotation = Quaternion.Euler (0, 0, 0);
-			} else if (Input.GetKey ("a") && DamageTaken.currentHealth > 0) {
+			} else if (Input.GetKey ("a") && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
 				anim.SetBool ("isRunning", true);
 				move.x = -1;
 				transform.rotation = Quaternion.Euler (0, 180, 0);

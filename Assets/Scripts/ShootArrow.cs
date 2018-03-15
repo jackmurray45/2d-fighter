@@ -69,10 +69,10 @@ public class ShootArrow : MonoBehaviour {
 
 		}
 		if (quickShoot && quickShootTime > 0) {
-			Debug.Log ("HERE!");
+			
 			boostDisplay.text = "Arrow Boost: " + Mathf.RoundToInt(quickShootTime)+"s";
 		} else {
-			Debug.Log ("Now here!");
+			
 			boostDisplay.text = "";
 		}
 		quickShootTime -= Time.deltaTime;

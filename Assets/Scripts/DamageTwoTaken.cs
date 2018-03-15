@@ -72,7 +72,7 @@ public class DamageTwoTaken : MonoBehaviour {
 				playerTwoSound.Play ();
 				Destroy (collider.gameObject);
 				StartCoroutine (DamageFlash ());
-				invisibleTimeFrame = 0.0f;
+
 			}
 
 			if (collider.gameObject.tag == "FireBall") {
@@ -83,7 +83,7 @@ public class DamageTwoTaken : MonoBehaviour {
 				playerTwoSound.Play ();
 				Destroy (collider.gameObject);
 				StartCoroutine (DamageFlash ());
-				invisibleTimeFrame = 0.0f;
+
 			}
 
 			if (collider.gameObject.tag == "Knight") {
@@ -93,9 +93,10 @@ public class DamageTwoTaken : MonoBehaviour {
 				healthDisplay.text = "" + currentHealth;
 				playerTwoSound.Play ();
 				StartCoroutine (DamageFlash ());
-				invisibleTimeFrame = 0.0f;
+
 
 			}
+			invisibleTimeFrame = 0.2f;
 		}
 
 		if (collider.tag == "Health" && currentHealth < 100 && currentHealth > 0) {

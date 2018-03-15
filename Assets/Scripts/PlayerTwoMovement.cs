@@ -30,18 +30,18 @@ public class PlayerTwoMovement : PhysicsObject {
 		if (Time.timeScale != 0) {
 			
 
-			if (Input.GetKeyDown ("up") && grounded) {
+			if (Input.GetKeyDown ("up") && grounded && DamageTwoTaken.currentHealth > 0 && DamageTaken.currentHealth > 0) {
 				anim.SetTrigger ("isJumping");
 
 				velocity.y = jumpTakeOffSpeed;
 			}
 
 
-			if (Input.GetKey ("right") && DamageTwoTaken.currentHealth > 0) {
+			if (Input.GetKey ("right") && DamageTwoTaken.currentHealth > 0 && DamageTaken.currentHealth > 0) {
 				anim.SetBool ("isRunning", true);
 				move.x = 1;
 				transform.rotation = Quaternion.Euler (0, 0, 0);
-			} else if (Input.GetKey ("left") && DamageTwoTaken.currentHealth > 0) {
+			} else if (Input.GetKey ("left") && DamageTwoTaken.currentHealth > 0 && DamageTaken.currentHealth > 0) {
 				anim.SetBool ("isRunning", true);
 				move.x = -1;
 				transform.rotation = Quaternion.Euler (0, 180, 0);

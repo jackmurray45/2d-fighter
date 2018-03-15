@@ -37,15 +37,16 @@ public class ArrowBoostSpawner : MonoBehaviour {
 		float y = 6.5f;
 		float x = Random.Range (-8.3f, 7.75f);
 		Vector3 positions= new Vector3 (x, y, 0);
-
-		if (arrowOrBoost > .15f) {
+		if (DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
+			if (arrowOrBoost > .15f) {
 			
-			Instantiate (arrow, positions, rotation);
-		} else if (arrowOrBoost < .15f && arrowOrBoost > .075f) {
-			positions = new Vector3 (positions.x + 3, positions.y, positions.z);
-			Instantiate (arrowPack, positions, rotation);
-		} else {
-			Instantiate (healthElixir, positions, rotation);
+				Instantiate (arrow, positions, rotation);
+			} else if (arrowOrBoost < .15f && arrowOrBoost > .075f) {
+				positions = new Vector3 (positions.x + 3, positions.y, positions.z);
+				Instantiate (arrowPack, positions, rotation);
+			} else {
+				Instantiate (healthElixir, positions, rotation);
+			}
 		}
 
 
