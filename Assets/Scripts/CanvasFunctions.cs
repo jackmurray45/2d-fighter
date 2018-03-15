@@ -42,4 +42,10 @@ public class CanvasFunctions : MonoBehaviour {
 		DamageTwoTaken.currentHealth = DamageTaken.maxHealth;
 
 	}
+
+
+	public void QuitGame(){
+		Application.Quit ();
+
+	}
 }
