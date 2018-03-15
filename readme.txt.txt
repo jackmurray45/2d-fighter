@@ -1,0 +1,5 @@
+Game by Dennis Quach and Jack Murray
+
+Our game is a 2d shooter/fighter where two players fight each other using a single keyboard. As players try to kill one another various enemy NPCs show up, projectiles fall from the sky, and power-ups drop during the fight. Although, the environment creates a lot of havoc during the game the objective is still always to kill your opponent. Once one player reaches 0 health the other is the victor and the players are offered to play again for a rematch.
+
+Given how crazy the game can get with various enemies and drops, we want the players to feel focused on the game and pressured not to mess up with all the obstacles placed in front them. As well, since this game is player vs. player, we want players to let out their competitive side. Since matches in this game don’t take relatively too much time, players will be more attached to how they played in a given series rather than an individual match. As a result, players will not feel frustrated when losing a single match and will still want to keep playing more rounds to improve how they played overall against their opponents.
