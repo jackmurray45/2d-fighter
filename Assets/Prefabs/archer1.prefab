@@ -214,7 +214,7 @@ MonoBehaviour:
   quickShootTime: 10
   arrow: {fileID: 1337069248181902, guid: 5e91a02e0fdebd04e98fdb5e35a94628, type: 2}
   dt: {fileID: 114509056227735798}
-  shootSound: {fileID: 8300000, guid: 004460741ef7361459fd0d55e161069c, type: 3}
+  shootSound: {fileID: 8300000, guid: e88b32befcd8e9743a10499a86157dff, type: 3}
   arrowPackSound: {fileID: 8300000, guid: 5277ae5e9f347f141b1117dc5893b69e, type: 3}
   boostDisplay: {fileID: 0}
 --- !u!114 &114811078483155716

@@ -24,9 +24,7 @@ public class ShootArrowTwo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (playerAudio.clip == arrowPackSound) {
-			Invoke ("ChangeToShoot", 1.0f);
-		}
+
 
 		timeLeftToShoot -= Time.deltaTime;
 		if (Input.GetKey ("[0]")) {
@@ -84,16 +82,13 @@ public class ShootArrowTwo : MonoBehaviour {
 	}
 
 
-	void ChangeToShoot(){
-		playerAudio.clip = shootSound;
-	}
+
 
 	void OnTriggerEnter2D (Collider2D collider){
 		if (collider.gameObject.tag == "ArrowBoost") {
 			quickShoot = true;
 
-			playerAudio.clip = arrowPackSound;
-			playerAudio.Play ();
+			AudioSource.PlayClipAtPoint(arrowPackSound, transform.position);
 			Destroy (collider.gameObject);
 			quickShootTime = 10.0f;
 		}

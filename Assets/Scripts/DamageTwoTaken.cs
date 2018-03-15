@@ -104,13 +104,12 @@ public class DamageTwoTaken : MonoBehaviour {
 				currentHealth = maxHealth;
 			}
 
-			playerTwoSound.clip = elixirSound;
-			playerTwoSound.Play ();
+			AudioSource.PlayClipAtPoint(elixirSound, transform.position);
 
 			healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
 
-			Invoke ("ChangeToDamage", 1.3f);
+
 
 		}
 	}

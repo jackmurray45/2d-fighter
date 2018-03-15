@@ -99,13 +99,13 @@ public class DamageTaken : MonoBehaviour {
 			if (currentHealth > maxHealth) {
 				currentHealth = maxHealth;
 			}
-			playerSound.clip = elixirSound;
-			playerSound.Play ();
 
+
+			AudioSource.PlayClipAtPoint(elixirSound, transform.position);
 			healthDisplay.text = "" + currentHealth;
 			Destroy (collider.gameObject);
 
-			Invoke ("ChangeToDamage", 1.3f);
+
 		}
 	}
 
