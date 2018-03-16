@@ -18,7 +18,7 @@ public class CreateEnemies : MonoBehaviour {
 		timeUntilNextEnemy -= Time.deltaTime;
 		if (timeUntilNextEnemy <= 0 && DamageTaken.currentHealth > 0 && DamageTwoTaken.currentHealth > 0) {
 			float y = -2.0f;
-			float x = Random.Range (-8.3f, 7.75f);
+			float x = Random.Range (-8.0f, 7.75f);
 			//transform.position = new Vector3 (x, y, 0);
 			Quaternion rotation = transform.rotation;
 
