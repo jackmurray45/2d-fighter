@@ -33,7 +33,7 @@ public class ShootArrowTwo : MonoBehaviour {
 			if (arrowPower > ARROW_MAX)
 				arrowPower = ARROW_MAX;
 		}
-		if (Input.GetKeyUp ("[0]") && DamageTwoTaken.currentHealth > 0 && timeLeftToShoot <= 0) {
+		if ((Input.GetKeyUp ("[0]") || Input.GetKeyUp(KeyCode.RightControl)) && DamageTwoTaken.currentHealth > 0 && timeLeftToShoot <= 0) {
 
 			arrowPower = 0.0f;
 			float rot = transform.rotation.y;
